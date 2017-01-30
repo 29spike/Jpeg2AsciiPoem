@@ -1,67 +1,35 @@
+#!/usr/bin/python
 #NABREU November 2016
+import cmath
+import math
 
-def fileopen(filename):
-        f=open(filename)
+def doitall(picturefile,poemfile):
+	Ap,Piclen=grab(picturefile)	
+# Ap = Ascii Picture Piclen = Picture length	
+	Po,Polen=grab(poemfile)		
+# Po = Poem Polen = Poem Length
+#TODO: Finish convert function
+#	Con=convert(Ap,Piclen,Po,Polen)
+	makefile(Con,picturefile+"Converted.txt")
+
+def grab(filename):
+	f=open(filename)
         tstring=f.read()
-        f.close()
-        return tstring
+	#with open(filename) as f:
+	#	tstring=f.readlines()
+	l=len(tstring)
+	f.close()
+	return tstring,l
 
-def makearray(warray):
+def makefile(convertfile,filename):
+	nf=file(filename,"w")
+	for y in convertfile:
+		for x in y:
+			nf.write(str(x))
+			nf.write(" ")
+		nf.write("\n")
+	nf.close()
 
-        warray=[]
-        for line in wstring:
-            Warray.extend(line)
-        return Warray
-
-def main():
-    #Edit these with the correct file locations
-    #Cfile is your converted picture in a txt file
-    #pname is your poem in a txt file
-    Convertfile='mario.txt'
-    poemfile='mariopoem.txt'
-
-    #opens the file
-    CLpoem=(poemfile)
-    Curlinepoem=CLpoem.read()
-
-    Wordarray = []
-    for line in Curlinepoem:
-            Wordarray.extend(line)
-
-    # Length of current line Word array
-    wordcount=len(Wordarray)
-
-    # Opened File
-    CLpic = open(Convertfile)
-    Curlinepic=CLpic.read()
-
-    # Make CurentLine into a string of single characters
-    Asciiarray = []
-    for line in Curlinepic:
-            Asciiarray.extend(line)
-
-    # Length of current line Asciiarray
-    asciicount=len(Asciiarray)
-    current=0
-
-    Continue='true'
-
-    # Compare to string of single characters
-    while(Continue=='true'):
-            if Asciiarray[line]!= ' ' | line != wordcount | line != asciicount:
-                Asciiarray[line]=Wordarray[current]
-                current+=1
-                line+=1
-            if line == wordcount:
-                # What if end of poem?
-                for line in Curlinepoem:
-                    Wordarray.extend(line)
-                wordcount = len(Wordarray)
-            if line == asciicount:
-                # What if end of picture?
-                # Write to txt first line
-                for line in Curlinepic:
-                    Asciiarray.extend(line)
-                asciicount = len(Asciiarray)
-            else:
-                line+=1
+#TODO: Finish convert function
+#def convert(AsciiPic,Piclength,Poem,Poemlength):
+#	for line	
